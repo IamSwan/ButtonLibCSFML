@@ -7,11 +7,11 @@
 
 #include "../include/button.h"
 
-bool button_is_hover(sfRenderWindow *window, sfSprite *sprite)
+bool button_is_hover(sfRenderWindow *window, sfSprite *button)
 {
     sfVector2i mousePos = sfMouse_getPositionRenderWindow(window);
-    sfVector2f pos = sfSprite_getPosition(sprite);
-    sfVector2f scale = sfSprite_getScale(sprite);
+    sfVector2f pos = sfSprite_getPosition(button);
+    sfVector2f scale = sfSprite_getScale(button);
     sfVector2f size = {scale.x * 100, scale.y * 100};
 
     if (mousePos.x >= pos.x && mousePos.x <= pos.x + size.x) {
@@ -22,9 +22,9 @@ bool button_is_hover(sfRenderWindow *window, sfSprite *sprite)
     return false;
 } // Check if the mouse is hovering the button
 
-bool button_is_clicked(sfRenderWindow *window, sfSprite *sprite)
+bool button_is_clicked(sfRenderWindow *window, sfSprite *button)
 {
-    if (!button_is_hover(window, sprite))
+    if (!button_is_hover(window, button))
         return false;
     if (sfMouse_isButtonPressed(sfMouseLeft))
         return true;
