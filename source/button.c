@@ -5,22 +5,17 @@
 ** button
 */
 
-#include "../include/Button.h"
+#include "../include/button.h"
 
-sfSprite *create_button(sfTexture *texture, sfVector2f scale, sfVector2f pos)
+sfSprite *create_button(char *texturePath, sfVector2f scale, sfVector2f pos)
 {
-    button_t *button = malloc(sizeof(button_t));
-
-    if (!texture)
-        return NULL;    
-    button->sprite = sfSprite_create();
-    button->texture = texture;
-    button->scale = scale;
-    button->pos = pos;
-    sfSprite_setTexture(button->sprite, button->texture, sfTrue);
-    sfSprite_setScale(button->sprite, button->scale);
-    sfSprite_setPosition(button->sprite, button->pos);
-    return button->sprite;
+    sfSprite *sprite = sfSprite_create();
+    sfTexture *texture = sfTexture_createFromFile(texturePath, NULL);
+        
+    sfSprite_setTexture(sprite, texture, sfTrue);
+    sfSprite_setScale(sprite, scale);
+    sfSprite_setPosition(sprite, pos);
+    return sprite;
 } // Create a button
 
 void button_destroy(sfSprite *sprite)

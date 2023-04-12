@@ -1,25 +1,25 @@
 ##
 ## EPITECH PROJECT, 2023
-## ButtonLib
+## ButtonLibCSFML
 ## File description:
 ## Makefile
 ##
 
-SRC = source/button.c
+FLAGS = -lcsfml-graphics -lcsfml-window -lcsfml-system
 
-OBJ = $(SRC:.c=.o)
+SRC = 	source/button.c\
+		main.c
 
-NAME = libbutton.a
+NAME = buttontest
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	ar rc $(NAME) $(OBJ)
+$(NAME):
+	$(CC) -o $(NAME) $(SRC) $(FLAGS)
 
 clean:
-	$(RM) $(OBJ)
+	rm -f $(NAME)
 
 fclean: clean
-	$(RM) $(NAME)
 
 re: fclean all
